@@ -3,48 +3,53 @@ package api;
 import model.Customer;
 import model.IRoom;
 import model.Reservation;
+import model.Room;
 import service.CustomerService;
 import service.ReservationService;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Wadek on 25/10/2020.
  */
-public class HotelResource implements CustomerService, ReservationService {
+public class HotelResource {
+    private static final CustomerService customerService = new CustomerService();
+    private static final ReservationService reservationService = new ReservationService();
 
-    @Override
-    public void addCustomer(String email, String firstName, String lastName) {
-
+    public void createACustomer(String email, String firstName, String lastName) {
+        customerService.addCustomer(email, firstName, lastName);
     }
 
-    @Override
     public Customer getCustomer(String customerEmail) {
-        return null;
+        return customerService.getCustomer(customerEmail);
     }
 
-    @Override
-    public Collection<Customer> getAllCustomers() {
-        return null;
+    public List<Customer> getAllCustomers() {
+        return customerService.getAllCustomers();
     }
 
-    @Override
-    public IRoom getARoom(String roomId) {
-        return null;
+    public void addRoom(Room room) {
+        reservationService.addRoom(room);
     }
 
-    static public Reservation reserveRoom(String customerEmail, IRoom room, Date checkInDate, Date checkOutDate) {
-        return null;
+    public IRoom getRoom(String roomNumber) {
+        return reservationService.getARoom(roomNumber);
     }
 
-    @Override
-    public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
-        return null;
+    public Reservation bookARoom(Customer customer, Room room, Date checkInDate, Date checkOutDate) {
+        return reservationService.reserveRoom(customer, room, checkInDate, checkOutDate);
     }
 
-    @Override
-    public Collection<Reservation> getCustomerReservations(String customerEmail) {
-        return null;
+    public List<IRoom> findARoom(Date checkInDate, Date checkOutDate) {
+        return reservationService.findARoom(checkInDate, checkOutDate);
+    }
+
+    public void printAllReservations() {
+        reservationService.printAllReservations();
+    }
+
+    public List<Reservation> getCustomerReservations(String customerEmail) {
+        return reservationService.getCustomerReservations(customerEmail);
     }
 }

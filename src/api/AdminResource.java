@@ -2,38 +2,63 @@ package api;
 
 import model.Customer;
 import model.IRoom;
+import model.Reservation;
+import model.Room;
 import service.CustomerService;
 import service.ReservationService;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Wadek on 26/10/2020.
  */
-public class AdminResource implements CustomerService {
+public class AdminResource {
+    private static final CustomerService customerService = new CustomerService();
+    private static final ReservationService reservationService = new ReservationService();
 
-    public void displayAllReservations(){
-    }
 
-    public Collection<IRoom> getAllRooms(){
-        return null;
-    }
-
-    @Override
     public void addCustomer(String email, String firstName, String lastName) {
+        customerService.addCustomer(email, firstName, lastName);
     }
 
-    @Override
     public Customer getCustomer(String customerEmail) {
-        return null;
+        return customerService.getCustomer(customerEmail);
     }
 
-    @Override
-    public Collection<Customer> getAllCustomers() {
-        return null;
+    public List<Customer> getAllCustomers() {
+        return customerService.getAllCustomers();
     }
 
-    public static void addRoom(List<IRoom> rooms) {
+
+    public void addRoom(Room rooms) {
+        reservationService.addRoom(rooms);
+    }
+
+
+    public Reservation reserveRoom(Customer customer, Room room, Date checkInDate, Date checkOutDate) {
+        return reservationService.reserveRoom(customer, room, checkInDate, checkOutDate);
+    }
+
+
+    public List<Reservation> getCustomerReservation(Customer customer) {
+        return reservationService.getCustomerReservation(customer);
+    }
+
+    public void displayAllReservations() {
+        reservationService.printAllReservations();
+    }
+
+    public List<Reservation> getCustomerReservations(String customerEmail) {
+        return reservationService.getCustomerReservations(customerEmail);
+    }
+
+    public List<IRoom> allRooms() {
+        return reservationService.allRooms();
+    }
+
+    public Collection<IRoom> findARoom(Date checkInDate, Date checkOutDate) {
+        return null;
     }
 }

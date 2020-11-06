@@ -7,9 +7,33 @@ import java.util.regex.Pattern;
  * Created by Wadek on 25/10/2020.
  */
 public class Customer {
-    public final String firstName;
-    public final String lastName;
-    public String email;
+    private String firstName;
+    private String lastName;
+    private String email;
+
+
+    public Customer() {
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Customer(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -17,6 +41,10 @@ public class Customer {
         this.email = email;
         emailValidate(email);
 
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
@@ -29,9 +57,9 @@ public class Customer {
     }
 
     public void emailValidate(String email) {
-            Matcher matcher = Pattern.compile("^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}(.[a-z]{2,3})+$|^$",
-                    Pattern.CASE_INSENSITIVE).matcher(email);
-            if (!matcher.matches()) throw new IllegalArgumentException("Email is invalid!");
+        Matcher matcher = Pattern.compile("^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}(.[a-z]{2,3})+$|^$",
+                Pattern.CASE_INSENSITIVE).matcher(email);
+        if (!matcher.matches()) throw new IllegalArgumentException("Email is invalid!");
     }
 
     @Override

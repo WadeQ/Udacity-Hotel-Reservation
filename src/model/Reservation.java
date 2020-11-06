@@ -1,30 +1,31 @@
 package model;
 
 import java.util.Date;
+
 /**
  * Created by Wadek on 25/10/2020.
  */
 public class Reservation {
-    private Customer customer ;
-    private IRoom iRoom;
+    private Customer customer;
+    private IRoom Iroom;
     private Date checkInDate;
     private Date checkOutDate;
+
+    public Reservation(Customer customer, IRoom iroom, Date checkInDate, Date checkOutDate) {
+        this.customer = customer;
+        Iroom = iroom;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+    }
 
     @Override
     public String toString() {
         return "Reservation{" +
                 "customer=" + customer +
-                ", iRoom=" + iRoom +
+                ", Iroom=" + Iroom +
                 ", checkInDate=" + checkInDate +
                 ", checkOutDate=" + checkOutDate +
                 '}';
-    }
-
-    public Reservation(Customer customer, IRoom iRoom, Date checkInDate, Date checkOutDate) {
-        this.customer = customer;
-        this.iRoom = iRoom;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
     }
 
     public Customer getCustomer() {
@@ -35,12 +36,12 @@ public class Reservation {
         this.customer = customer;
     }
 
-    public IRoom getiRoom() {
-        return iRoom;
+    public IRoom getIroom() {
+        return Iroom;
     }
 
-    public void setiRoom(IRoom iRoom) {
-        this.iRoom = iRoom;
+    public void setIroom(IRoom iroom) {
+        Iroom = iroom;
     }
 
     public Date getCheckInDate() {
@@ -59,13 +60,4 @@ public class Reservation {
         this.checkOutDate = checkOutDate;
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
 }
